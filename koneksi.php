@@ -1,8 +1,19 @@
 <?php
+$host = 'localhost';  // Sesuaikan dengan konfigurasi host
+$user = 'root';       // Sesuaikan dengan user MySQL Anda
+$pass = '';           // Jika ada password, masukkan di sini
+$db   = 'pengaduan_masyarakat';  // Sesuaikan dengan nama database Anda
 
-$hostname = "localhost";
-$username = "root";
-$password = "1211";
-$database = "pengaduan_masyarakat";
+try {
+    // Membuat koneksi
+    $conn = mysqli_connect($host, $user, $pass, $db);
 
-$koneksi = new mysqli($hostname,$username,$password,$database);
+    if (!$conn) {
+        throw new Exception("Koneksi database gagal: " . mysqli_connect_error());
+    }
+
+} catch (Exception $e) {
+    // Menangkap dan menampilkan pesan kesalahan
+    echo "Error: " . $e->getMessage();
+    exit();
+}

@@ -105,11 +105,11 @@ $result = mysqli_query($conn, $query);
     </style>
 </head>
 <body>
-    <h2>Daftar Pengaduan</h2>
+    <h2>Daftar Permintaan Masyarakat Beban</h2>
     
     <!-- Link to register_petugas.php -->
     <div class="button-container">
-        <a href="register_petugas.php">Tambah Petugas</a>
+        <a href="register_petugas.php">Tambah Budak</a>
     </div>
 
     <table>

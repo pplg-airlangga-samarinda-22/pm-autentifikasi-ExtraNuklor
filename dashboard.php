@@ -116,7 +116,7 @@ $result = mysqli_query($conn, $query);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Pengaduan Saya</h2>
+    <h2>List Menyulitkan Petugas Saya</h2>
     <table>
         <tr>
             <th>Tanggal</th>
@@ -132,11 +132,11 @@ $result = mysqli_query($conn, $query);
         <?php } ?>
     </table>
 
-    <h2>Buat Pengaduan Baru</h2>
+    <h2>Buat Cerewetan Baru</h2>
     <form action="proses_pengaduan.php" method="POST" enctype="multipart/form-data">
         <textarea name="isi_laporan" placeholder="Isi laporan" required></textarea><br>
         <input type="file" name="foto"><br>
-        <button type="submit" name="submit">Kirim Pengaduan</button>
+        <button type="submit" name="submit">Minta bagi Bagi kesulitan</button>
     </form>
 </body>
 </html>

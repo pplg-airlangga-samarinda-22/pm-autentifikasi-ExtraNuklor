@@ -125,12 +125,12 @@ if (isset($_POST['login'])) {
 </head>
 <body>
     <form method="POST">
-        <h2>Login</h2>
+        <h2>Login Dulu Le</h2>
         <input type="text" name="username" placeholder="Username" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit" name="login">Login</button>
+        <button type="submit" name="login">Menuju Dimensi Berbeda</button>
         <br><br>
-        <a href="register_masyarakat.php">Belum punya akun? Daftar di sini</a>
+        <a href="register_masyarakat.php">Belum punya Skibidi? Daftar di sini</a>
     </form>
 </body>
 </html>

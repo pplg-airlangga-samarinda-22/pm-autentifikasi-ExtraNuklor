@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';  // Sesuaikan dengan konfigurasi host
 $user = 'root';       // Sesuaikan dengan user MySQL Anda
-$pass = '';           // Jika ada password, masukkan di sini
+$pass = '1211';           // Jika ada password, masukkan di sini
 $db   = 'pengaduan_masyarakat';  // Sesuaikan dengan nama database Anda
 
 try {

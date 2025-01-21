@@ -53,7 +53,7 @@ $result = mysqli_query($conn, $query);
 
         th, td {
             padding: 12px 15px;
-            text-align: left;
+            text-align: center;
         }
 
         th {
@@ -122,12 +122,14 @@ $result = mysqli_query($conn, $query);
             <th>Tanggal</th>
             <th>Isi Laporan</th>
             <th>Status</th>
+            <th>Edit?</th>
         </tr>
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
             <td><?= $row['tgl_pengaduan'] ?></td>
             <td><?= $row['isi_laporan'] ?></td>
             <td><?= $row['status'] ?></td>
+            <td><a href="edit_pengaduan.php?id_pengaduan=<?= $row['id_pengaduan'] ?>" style="color: #1db954;">Edit</a></td>
         </tr>
         <?php } ?>
     </table>

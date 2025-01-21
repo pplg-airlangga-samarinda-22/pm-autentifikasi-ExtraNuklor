@@ -51,6 +51,8 @@ if (isset($_POST['register'])) {
             align-items: center;
             height: 100vh;
             margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         form {

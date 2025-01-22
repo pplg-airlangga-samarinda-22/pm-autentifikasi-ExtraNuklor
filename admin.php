@@ -18,16 +18,12 @@ $result = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <style>
-        /* Spotify Inspired CSS */
         body {
             background-color: #1c1c1e;
             color: #fff;
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         h2 {
@@ -35,6 +31,34 @@ $result = mysqli_query($conn, $query);
             font-size: 24px;
             text-align: center;
             margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .box {
+            padding: 20px;
+            background-color: #2c2c2e;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .box a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            background-color: #1db954;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .box a:hover {
+            background-color: #1ed760;
         }
 
         table {
@@ -55,10 +79,6 @@ $result = mysqli_query($conn, $query);
         th {
             background-color: #323232;
             color: #b3b3b3;
-        }
-
-        td {
-            background-color: #2c2c2e;
         }
 
         td img {
@@ -84,51 +104,48 @@ $result = mysqli_query($conn, $query);
             background-color: #1ed760;
         }
 
-        th, a {
-            font-weight: 500;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
             table, th, td {
                 font-size: 14px;
             }
-        }
-
-        .button-container {
-            margin-bottom: 20px;
-        }
-
-        .button-container a {
-            margin-right: 10px;
         }
     </style>
 </head>
 <body>
     <h2>Daftar Permintaan Masyarakat Beban</h2>
-    
-    <!-- Link to register_petugas.php -->
-    <div class="button-container">
-        <a href="register_petugas.php">Tambah Budak</a>
-    </div>
 
-    <table>
-        <tr>
-            <th>NIK</th>
-            <th>Isi Laporan</th>
-            <th>Foto</th>
-            <th>Status</th>
-            <th>Aksi</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-        <tr>
-            <td><?= $row['nik'] ?></td>
-            <td><?= $row['isi_laporan'] ?></td>
-            <td><img src="uploads/<?= $row['foto'] ?>" width="100"></td>
-            <td><?= $row['status'] ?></td>
-            <td><a href="proses_tanggapan.php?id_pengaduan=<?= $row['id_pengaduan'] ?>">Tanggapi</a></td>
-        </tr>
-        <?php } ?>
-    </table>
+    <div class="container">
+        <!-- Box on the left with buttons -->
+        <div class="box">
+            <a href="register_petugas.php">Tambah Petugas</a>
+            <a href="register_masyarakat.php">Tambah Masyarakat</a>
+        </div>
+
+        <!-- Table of pengaduan -->
+        <table>
+            <tr>
+                <th>NIK</th>
+                <th>Isi Laporan</th>
+                <th>Foto</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <tr>
+                <td><?= $row['nik'] ?></td>
+                <td><?= $row['isi_laporan'] ?></td>
+                <td><img src="uploads/<?= $row['foto'] ?>" width="100"></td>
+                <td><?= $row['status'] ?></td>
+                <td><a href="proses_tanggapan.php?id_pengaduan=<?= $row['id_pengaduan'] ?>">Tanggapi</a></td>
+            </tr>
+            <?php } ?>
+        </table>
+    </div>
 </body>
 </html>

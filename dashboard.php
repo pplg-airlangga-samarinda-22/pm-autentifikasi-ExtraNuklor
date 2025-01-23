@@ -15,12 +15,12 @@ $result = mysqli_query($conn, $query);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
-        /* Spotify-inspired styling */
         body {
             background-color: #121212;
             color: #ffffff;
@@ -40,10 +40,15 @@ $result = mysqli_query($conn, $query);
             text-align: center;
         }
 
-        table {
+        .table-container {
             width: 80%;
-            border-collapse: collapse;
             margin-bottom: 30px;
+        }
+
+        /* The main table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
             background-color: #181818;
             color: #ffffff;
             border-radius: 8px;
@@ -51,7 +56,8 @@ $result = mysqli_query($conn, $query);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px 15px;
             text-align: center;
         }
@@ -69,76 +75,153 @@ $result = mysqli_query($conn, $query);
             background-color: #333333;
         }
 
-        textarea {
-            width: 80%;
-            padding: 10px;
-            background-color: #333333;
-            border: none;
-            border-radius: 8px;
-            color: #ffffff;
-            margin-bottom: 20px;
-            resize: none;
-            font-size: 16px;
+
+        /* Align the buttons to the right side */
+        .button-box {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
         }
 
-        textarea::placeholder {
-            color: #b3b3b3;
-        }
-
-        input[type="file"] {
-            margin-bottom: 20px;
-            color: #b3b3b3;
-        }
-
-        button {
-            padding: 10px 20px;
+        /* Button styles */
+        .button-box a {
+            text-decoration: none;
             background-color: #1db954;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-box a:hover {
+            background-color: #1ed760;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .table-container {
+                width: 95%;
+            }
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #181818;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+        }
+
+        /* Heading */
+        h2 {
+            color: #1db954;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Form elements styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Textarea */
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444444;
+            border-radius: 5px;
+            background-color: #121212;
             color: #ffffff;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 150px;
+            transition: border 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #1db954;
+            outline: none;
+        }
+
+        /* File input */
+        .form-input-file {
+            width: 100%;
+            padding: 10px;
+            background-color: #121212;
+            color: #ffffff;
+            border: 1px solid #444444;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-input-file:hover {
+            background-color: #1db954;
+        }
+
+        /* Button */
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #1db954;
             border: none;
-            border-radius: 50px;
+            border-radius: 5px;
+            color: white;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        button:hover {
+        .submit-btn:hover {
             background-color: #1ed760;
-        }
-
-        /* Responsive design for mobile */
-        @media (max-width: 768px) {
-            table, textarea, button {
-                width: 95%;
-            }
         }
     </style>
     <!-- Optional: Add Spotify-like font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <h2>List Menyulitkan Petugas Saya</h2>
-    <table>
-        <tr>
-            <th>Tanggal</th>
-            <th>Isi Laporan</th>
-            <th>Status</th>
-            <th>Edit?</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-        <tr>
-            <td><?= $row['tgl_pengaduan'] ?></td>
-            <td><?= $row['isi_laporan'] ?></td>
-            <td><?= $row['status'] ?></td>
-            <td><a href="edit_pengaduan.php?id_pengaduan=<?= $row['id_pengaduan'] ?>" style="color: #1db954;">Edit</a></td>
-        </tr>
-        <?php } ?>
-    </table>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Tanggal</th>
+                <th>Isi Laporan</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <tr>
+                    <td><?= $row['tgl_pengaduan'] ?></td>
+                    <td><?= $row['isi_laporan'] ?></td>
+                    <td><?= $row['status'] ?></td>
+                    <td>
+                        <div class="button-box">
+                            <a href="edit_pengaduan.php?id_pengaduan=<?= $row['id_pengaduan'] ?>">Edit</a>
+                            <a href="delete_pengaduan.php?id_pengaduan=<?= $row['id_pengaduan'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus pengaduan ini?')">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
+<h2>Buat Cerewetan Baru</h2>
+<form action="proses_pengaduan.php" method="POST" enctype="multipart/form-data" class="form-container">
+    <div class="form-group">
+        <textarea name="isi_laporan" placeholder="Isi laporan" required class="form-input"></textarea>
+    </div>
+    
+    <div class="form-group">
+        <input type="file" name="foto" class="form-input-file">
+    </div>
 
-    <h2>Buat Cerewetan Baru</h2>
-    <form action="proses_pengaduan.php" method="POST" enctype="multipart/form-data">
-        <textarea name="isi_laporan" placeholder="Isi laporan" required></textarea><br>
-        <input type="file" name="foto"><br>
-        <button type="submit" name="submit">Minta bagi Bagi kesulitan</button>
-    </form>
+    <button type="submit" name="submit" class="submit-btn">Minta bagi Bagi kesulitan</button>
+</form>
 </body>
+
 </html>

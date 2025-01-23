@@ -97,11 +97,13 @@ require "koneksi.php";
             table thead {
                 background-color: #004085 !important;
                 color: white !important;
+                print-color-adjust: exact;
                 -webkit-print-color-adjust: exact; /* Maintain colors during printing */
             }
             table tbody tr:nth-child(even),
             table tbody tr:nth-child(odd),
             table tbody tr:hover {
+                print-color-adjust: exact;
                 -webkit-print-color-adjust: exact;
             }
             .btn-back {
